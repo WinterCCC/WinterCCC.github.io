@@ -7,11 +7,10 @@ redirect_from:
   - /about.html
 ---
 
-I am a fourth year undergraduate student from the School of Mathematical Sciences, Ocean University of China. My research interests include optimization in machine learning and computational neuroscience.
-
-I am very fortunate to be advised by Prof. Xueying Zeng from the School of Mathematical Sciences, Ocean University of China.
+I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. Chi Zhang. I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. My research interests including Generative models, Diffusion Theory, Optimization in Machine Learning, Computational Neuroscience.
 
 You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
+
 
 
 Research Experience

@@ -32,7 +32,7 @@ Research Experience
 Publications
 ======
 
-- Wang, C., Chen, Z., Li, M., Yin, H., Zhou, S., Zhang, J., ... & Zhang, Q. (2025). **DDUM: Deformable Dilated U-structure Module for Coronary Stenosis Detection**. *Medical Engineering & Physics*. 
+- **Wang**, C., Chen, Z., Li, M., Yin, H., Zhou, S., Zhang, J., ... & Zhang, Q. (2025). **DDUM: Deformable Dilated U-structure Module for Coronary Stenosis Detection**. *Medical Engineering & Physics*. 
 
 
 Skills

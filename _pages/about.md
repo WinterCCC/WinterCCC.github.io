@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. My research interests including Generative models, Diffusion Theory, Optimization in Machine Learning, Computer Vision, Computational Neuroscience.
+I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm). My research interests including Generative models, Diffusion Theory, Optimization in Machine Learning, Computer Vision, Computational Neuroscience.
 
 You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
@@ -21,11 +21,11 @@ Research Experience
   Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper is under review**.
 
 - **Research on Detection of Coronary Artery Stenosis**  
-  *Jun. 2023 – Apr. 2024, Ocean University of China (Advisor: Xueying Zeng)*  
+  *Jun. 2023 – Apr. 2024, Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))*  
   Applied deep learning techniques to assist physicians in diagnosing coronary artery disease and reduce diagnostic errors. Proposed the Deformable Dilatable U-structure Module to enhance model generalization. Constructed the 302 dataset to evaluate performance in clinical scenarios.
 
 - **Research on Image Denoising and Enhancement for Coronary Angiography**  
-  *Nov. 2022 – Sept. 2023, Ocean University of China (Advisor: Xueying Zeng)*  
+  *Nov. 2022 – Sept. 2023, Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))*  
   Explored denoising and enhancement techniques, proposed a novel hybrid method. Developed a new super-resolution method by integrating deep learning and traditional techniques.
 
 

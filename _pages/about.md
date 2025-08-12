@@ -14,9 +14,9 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 Publications
 ======
-- **Wang**, C., Zhu, B., Zhang, C. (2025). **PMI: Flow-Based Inversion Correction via Proximal Operator**. (Submitted)
+- **Wang, C**., Zhu, B., Zhang, C. (2025). **PMI: Flow-Based Inversion Correction via Proximal Operator**. (Submitted)
   
-- **Wang**, C., Chen, Z., Li, M., Yin, H., Zhou, S., Zhang, J., Zeng, X., Zhang, Q. (2025). **DDUM: Deformable Dilated U-structure Module for Coronary Stenosis Detection**. *Medical Engineering & Physics*. 
+- **Wang, C**., Chen, Z., Li, M., Yin, H., Zhou, S., Zhang, J., Zeng, X., Zhang, Q. (2025). **DDUM: Deformable Dilated U-structure Module for Coronary Stenosis Detection**. *Medical Engineering & Physics*. 
 
 
 Research Experience

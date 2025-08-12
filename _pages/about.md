@@ -24,7 +24,7 @@ Research Experience
 
 - **Research on Inversion and Editing Techniques in Generative Models**  
   *Jun. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
-  Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper is under review**.
+  Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper submitted**.
 
 - **Research on Detection of Coronary Artery Stenosis**  
   *Jun. 2023 – Apr. 2024, Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))*  

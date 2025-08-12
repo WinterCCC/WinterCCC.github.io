@@ -24,9 +24,9 @@ author:
   avatar           : "photo.png"
   name             : "Chenru Wang"
   pronouns         : # example: "she/her"  
-  bio              : "Westlake University"
+  # bio              : "Ocean University of China"
   location         : "China Qingdao"
-  employer         : "Ocean University of China"
+  employer         : "RA in Westlake University"
   # uri              : # URL
   email            : "winterccccc@gmail.com" 
 

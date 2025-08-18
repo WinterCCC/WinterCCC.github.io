@@ -12,14 +12,14 @@ I am currently a research assistant at AGI Lab, Westlake University, advised by 
 You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 
-Publications
+# Publications
 ======
 - **Wang, C**., Zhu, B., Zhang, C. (2025). **PMI: Flow-Based Inversion Correction via Proximal Operator**. (Submitted)
   
 - **Wang, C**., Chen, Z., Li, M., Yin, H., Zhou, S., Zhang, J., Zeng, X., Zhang, Q. (2025). **DDUM: Deformable Dilated U-structure Module for Coronary Stenosis Detection**. *Medical Engineering & Physics*. 
 
 
-Research Experience
+# Research Experience
 ======
 ## AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))
 - **Research on Reinforcement Learning for Diffusion models and Flow models**  
@@ -46,7 +46,7 @@ Research Experience
 
 
 
-Skills
+# Skills
 ======
 
 - **Programming Languages**: Python (PyTorch, OpenCV, Scikit-learn, etc.), C/C++, MATLAB, R  
@@ -54,7 +54,7 @@ Skills
 - **Languages**: English (IELTS 6.5)
 
 
-Award
+# Award
 ------
 
 - The Third Prize Scholarship, Ocean University of China (2023 & 2024)  

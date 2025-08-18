@@ -21,9 +21,15 @@ Publications
 
 Research Experience
 ======
+- **Research on Reinforcement Learning for Diffusion models and Flow models**  
+  *Aug. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*
+
+- **Research on Dataset Distillation and Dataset Generation (Co-author)**  
+  *Jul. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*
+  Developed a training-free method for dataset distillation and dataset generation.
 
 - **Research on Inversion and Editing Techniques in Generative Models**  
-  *Jun. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
+  *Apr. 2025 – Aug. 2025, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
   Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper submitted**.
 
 - **Research on Detection of Coronary Artery Stenosis**  

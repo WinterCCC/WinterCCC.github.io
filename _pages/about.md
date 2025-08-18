@@ -21,23 +21,25 @@ Publications
 
 Research Experience
 ======
+## AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))
 - **Research on Reinforcement Learning for Diffusion models and Flow models**  
-  *Aug. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
+  *Aug. 2025 – Present*  
 
 - **Research on Dataset Distillation and Dataset Generation (Co-author)**  
-  *Jul. 2025 – Present, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
+  *Jul. 2025 – Present*  
   Developed a training-free method for dataset distillation and dataset generation.
 
 - **Research on Inversion and Editing Techniques in Generative Models**  
-  *Apr. 2025 – Aug. 2025, AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))*  
+  *Apr. 2025 – Aug. 2025*  
   Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper submitted**.
 
+## Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
 - **Research on Detection of Coronary Artery Stenosis**  
-  *Jun. 2023 – Apr. 2024, Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))*  
+  *Jun. 2023 – Apr. 2024*  
   Applied deep learning techniques to assist physicians in diagnosing coronary artery disease and reduce diagnostic errors. Proposed the Deformable Dilatable U-structure Module to enhance model generalization. Constructed the 302 dataset to evaluate performance in clinical scenarios.
 
 - **Research on Image Denoising and Enhancement for Coronary Angiography**  
-  *Nov. 2022 – Sept. 2023, Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))*  
+  *Nov. 2022 – Sept. 2023*  
   Explored denoising and enhancement techniques, proposed a novel hybrid method. Developed a new super-resolution method by integrating deep learning and traditional techniques.
 
 

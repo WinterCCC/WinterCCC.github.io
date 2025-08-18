@@ -20,8 +20,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 
 # Research Experience
-
-## AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))
+### AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))
 - **Research on Reinforcement Learning for Diffusion models and Flow models**  
   *Aug. 2025 – Present*  
 
@@ -33,7 +32,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
   *Apr. 2025 – Aug. 2025*  
   Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper submitted**.
 
-## Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
+### Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
 - **Research on Detection of Coronary Artery Stenosis**  
   *Jun. 2023 – Apr. 2024*  
   Applied deep learning techniques to assist physicians in diagnosing coronary artery disease and reduce diagnostic errors. Proposed the Deformable Dilatable U-structure Module to enhance model generalization. Constructed the 302 dataset to evaluate performance in clinical scenarios.

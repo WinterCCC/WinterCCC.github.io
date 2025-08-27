@@ -7,7 +7,9 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm). My research interests including Generative models, Diffusion Theory, Reinforcement Learning, Optimization in Machine Learning, Computer Vision, Computational Neuroscience.
+I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm). My recent work focuses on **reinforcement learing in diffsion models**, **inversion and editing for flow/diffusion models** and **fine-tuning method for dataset distillation**.
+
+**News！**：I am applying to Ph.D programs this year (both Spring2026 and Fall2026 are available). My research interests including Generative models, Diffusion Theory, Reinforcement Learning, Optimization in Machine Learning, Computer Vision, Computational Neuroscience, and I want to explore more adjacent areas. 
 
 You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
@@ -26,7 +28,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 - **Research on Dataset Distillation and Dataset Generation (Co-author)**  
   *Jul. 2025 – Present*  
-  Developed a training-free method for dataset distillation and dataset generation.
+  Developed a novel fine-tuning method for dataset distillation and dataset generation.
 
 - **Research on Inversion and Editing Techniques in Generative Models**  
   *Apr. 2025 – Aug. 2025*  

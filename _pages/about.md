@@ -11,7 +11,7 @@ I am currently a research assistant at AGI Lab, Westlake University, advised by 
 
 My research interests including Generative models, Diffusion Theory, Reinforcement Learning, Optimization in Machine Learning, Computer Vision, Computational Neuroscience, and I want to explore more adjacent areas. My recent work focuses on **reinforcement learing in diffsion models**, **inversion and editing for flow/diffusion models** and **fine-tuning method for dataset distillation**.
 
-**News！**：I am applying to Ph.D position this year (both Spring 2026 and Fall 2026 are available). 
+**News！** I am applying to Ph.D position this year (both Spring 2026 and Fall 2026 are available)！
 
 You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 

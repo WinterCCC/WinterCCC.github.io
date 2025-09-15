@@ -13,4 +13,4 @@ redirect_from:
 
 - I also enjoy skiing, diving, and other sports.
 
-- And a amateur photographer.
+- And I am a amateur photographer.

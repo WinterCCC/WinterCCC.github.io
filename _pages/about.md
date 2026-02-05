@@ -189,10 +189,7 @@ See full publication list [here](/publications/).
   Explored denoising and enhancement techniques, proposed a novel hybrid method. Developed a new super-resolution method by integrating deep learning and traditional techniques.
 
 
-
-
 # Skills
-
 
 - **Programming Languages**: Python (PyTorch, OpenCV, Scikit-learn, etc.), C/C++, MATLAB, R
 - **Professional Software**: LaTeX, Lingo, Mathtype, Mathematica, SPSS

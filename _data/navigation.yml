@@ -5,8 +5,13 @@
 # prevent it from being included in the site.
 
 main:
+<<<<<<< HEAD
   - title: "Publications"
     url: /publications/
+=======
+  # - title: "Publications"
+    # url: /publications/
+>>>>>>> 71d6a772aace0cd04f7f796bc69edf75e47c03a3
 
   # - title: "Talks"
   #   url: /talks/    

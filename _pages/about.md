@@ -65,6 +65,9 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <span class="news-date">[2025]</span> I am looking for research internship opportunities!
   </div>
   <div class="news-item">
+    <span class="news-date">[Feb 2026]</span> One paper accepted to <strong>CVPR 2026</strong>!
+  </div>
+  <div class="news-item">
     <span class="news-date">[Jan 2026]</span> One paper accepted to <strong>ICLR 2026</strong>!
   </div>
   <div class="news-item">
@@ -158,7 +161,23 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-venue">ICLR 2026</div>
     <div class="selected-pub-links">
       <a href="/files/pmi_paper.pdf">Paper</a>
-      <a href="https://github.com/WinterCCC/PMI" class="code-link">Code</a>
+      <a href="https://arxiv.org/abs/2602.11850">arXiv</a>
+      <a href="https://github.com/WinterCCC/ICLR26--Free-Lunch-for-Stabilizing-Rectified-Flow-Inversion" class="code-link">Code</a>
+    </div>
+  </div>
+</div>
+
+<div class="selected-pub">
+  <div class="selected-pub-image">
+    <img src="/images/ims3_teaser.png" alt="IMS3">
+  </div>
+  <div class="selected-pub-content">
+    <div class="selected-pub-title">IMS3: Breaking Distributional Aggregation in Diffusion-Based Dataset Distillation</div>
+    <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Yunyi Chen, Zijun Yang, Joey Tianyi Zhou, Chi Zhang</div>
+    <div class="selected-pub-venue">CVPR 2026</div>
+    <div class="selected-pub-links">
+      <a href="/files/ims3_paper.pdf">Paper</a>
+      <a href="https://github.com/WinterCCC/IMS3" class="code-link">Code</a>
     </div>
   </div>
 </div>

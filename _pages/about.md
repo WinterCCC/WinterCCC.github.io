@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a research assistant at AGI Lab, Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
+I am an incoming Ph.D. student at <img src="/images/vt_logo.png" alt="VT" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Virginia Tech, advised by Prof. [Shengwei An](https://answ.in/). Currently, I am a research intern at <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> [Stepfun](https://www.stepfun.com/), focusing on RL post-training. Previously, I was a research assistant at AGI Lab, <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
 
 My research interests include **Generative Models**, **Trustworthy AI**, and **Post-Training**.
 
@@ -58,11 +58,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 <div class="news-box">
   <div class="news-item pinned">
     <span class="news-tag">Pinned</span>
-    <span class="news-date">[2025]</span> I am applying to Ph.D positions this year (both Spring 2026 and Fall 2026 are available)!
-  </div>
-  <div class="news-item pinned">
-    <span class="news-tag">Pinned</span>
-    <span class="news-date">[2025]</span> I am looking for research internship opportunities!
+    <span class="news-date">[2026]</span> I am looking for 2027 Summer internship opportunities!
   </div>
   <div class="news-item">
     <span class="news-date">[Feb 2026]</span> One paper accepted to <strong>CVPR 2026</strong>!
@@ -177,6 +173,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-venue">CVPR 2026</div>
     <div class="selected-pub-links">
       <a href="/files/ims3_paper.pdf">Paper</a>
+      <a href="https://arxiv.org/abs/2603.13960">arXiv</a>
       <a href="https://github.com/WinterCCC/IMS3" class="code-link">Code</a>
     </div>
   </div>
@@ -185,39 +182,24 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 See full publication list [here](/publications/).
 
 
-# Research Experience
-### AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/))
+# Experience
+
+### <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Stepfun (Research Intern)
+- **RL Post-Training**
+  *Mar. 2026 – Present*
+
+### <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/))
 - **Research on Reinforcement Learning for Diffusion models and Flow models**
   *Aug. 2025 – Present*
 
 - **Research on Dataset Distillation and Dataset Generation (Co-author)**
   *Jul. 2025 – Present*
-  Developed a novel fine-tuning method for dataset distillation and dataset generation.
 
 - **Research on Inversion and Editing Techniques in Generative Models**
   *Apr. 2025 – Aug. 2025*
-  Developed a plug-and-play velocity correction framework to improve inversion stability and editing fidelity in flow-based generative models. Achieved state-of-the-art results on PIE-Bench; **first-author paper accepted by ICLR 2026**.
 
-### Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
+### <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
 - **Research on Detection of Coronary Artery Stenosis**
-  *Jun. 2023 – Apr. 2024*
-  Applied deep learning techniques to assist physicians in diagnosing coronary artery disease and reduce diagnostic errors. Proposed the Deformable Dilatable U-structure Module to enhance model generalization. Constructed the 302 dataset to evaluate performance in clinical scenarios.
-
-- **Research on Image Denoising and Enhancement for Coronary Angiography**
-  *Nov. 2022 – Sept. 2023*
-  Explored denoising and enhancement techniques, proposed a novel hybrid method. Developed a new super-resolution method by integrating deep learning and traditional techniques.
+  *Nov. 2022 – Apr. 2024*
 
 
-# Skills
-
-- **Programming Languages**: Python (PyTorch, OpenCV, Scikit-learn, etc.), C/C++, MATLAB, R
-- **Professional Software**: LaTeX, Lingo, Mathtype, Mathematica, SPSS
-- **Languages**: English (IELTS 6.5)
-
-
-# Award
-
-- The Third Prize Scholarship, Ocean University of China (2023 & 2024)
-- Honorable Mention, Mathematical Contest in Modeling (2023 & 2024)
-- Outstanding Student, Ocean University of China (2024)
-- Outstanding Graduate, Ocean University of China (2025)

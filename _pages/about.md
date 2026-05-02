@@ -152,12 +152,11 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <img src="/images/pmi_teaser.png" alt="PMI">
   </div>
   <div class="selected-pub-content">
-    <div class="selected-pub-title">PMI: Flow-Based Inversion Correction via Proximal Operator</div>
+    <div class="selected-pub-title">Free Lunch for Stabilizing Rectified Flow Inversion</div>
     <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Beier Zhu, Chi Zhang</div>
     <div class="selected-pub-venue">ICLR 2026</div>
     <div class="selected-pub-links">
-      <a href="/files/pmi_paper.pdf">Paper</a>
-      <a href="https://arxiv.org/abs/2602.11850">arXiv</a>
+      <a href="https://arxiv.org/abs/2602.11850">Paper</a>
       <a href="https://github.com/WinterCCC/ICLR26--Free-Lunch-for-Stabilizing-Rectified-Flow-Inversion" class="code-link">Code</a>
     </div>
   </div>
@@ -172,8 +171,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Yunyi Chen, Zijun Yang, Joey Tianyi Zhou, Chi Zhang</div>
     <div class="selected-pub-venue">CVPR 2026</div>
     <div class="selected-pub-links">
-      <a href="/files/ims3_paper.pdf">Paper</a>
-      <a href="https://arxiv.org/abs/2603.13960">arXiv</a>
+      <a href="https://arxiv.org/abs/2603.13960">Paper</a>
       <a href="https://github.com/Westlake-AGI-Lab/IMS3" class="code-link">Code</a>
     </div>
   </div>

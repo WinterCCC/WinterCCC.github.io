@@ -174,7 +174,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-links">
       <a href="/files/ims3_paper.pdf">Paper</a>
       <a href="https://arxiv.org/abs/2603.13960">arXiv</a>
-      <a href="https://github.com/WinterCCC/IMS3" class="code-link">Code</a>
+      <a href="https://github.com/Westlake-AGI-Lab/IMS3" class="code-link">Code</a>
     </div>
   </div>
 </div>

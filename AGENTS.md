@@ -15,7 +15,7 @@ This repository is a Jekyll academic website based on Academic Pages. Site-wide 
 
 ## Coding Style & Naming Conventions
 
-Use two-space indentation in YAML, HTML, Liquid, JavaScript, and Sass. Keep Markdown front matter valid and follow existing field names. Name dated content `YYYY-MM-DD-short-slug.md`, for example `_publications/2026-03-14-ims3.md`. Use lowercase kebab-case for page and asset names. Edit source Sass and JavaScript rather than generated or vendored files; rebuild `main.min.js` when required. No formatter or linter is configured, so match neighboring files and keep changes focused.
+Use two-space indentation in YAML, HTML, Liquid, JavaScript, and Sass. Keep Markdown front matter valid and follow existing field names. Name dated content `YYYY-MM-DD-short-slug.md`, for example `_publications/2026-03-14-ims3.md`. On the publications page, list accepted or published papers first within each year; place entries labeled `Preprint` or only `arXiv` below them. Use lowercase kebab-case for page and asset names. Edit source Sass and JavaScript rather than generated or vendored files; rebuild `main.min.js` when required. No formatter or linter is configured, so match neighboring files and keep changes focused.
 
 ## Testing Guidelines
 

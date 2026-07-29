@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am an incoming Ph.D. student at <img src="/images/vt_logo.png" alt="VT" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Virginia Tech, advised by Prof. [Shengwei An](https://answ.in/). Currently, I am a research intern at <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> [Stepfun](https://www.stepfun.com/), focusing on RL post-training. Previously, I was a research assistant at AGI Lab, <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
+I am an incoming Ph.D. student at <img src="/images/vt_logo.png" alt="VT" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Virginia Tech, advised by Prof. [Shengwei An](https://answ.in/). Currently, I am a research intern in the **AIGC Foundation Dept.** at <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> [Stepfun](https://www.stepfun.com/), focusing on RL post-training. Previously, I was a research assistant at AGI Lab, <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
 
 My research interests include **Generative Models**, **Trustworthy AI**, and **Post-Training**.
 
@@ -182,7 +182,7 @@ See full publication list [here](/publications/).
 
 # Experience
 
-### <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Stepfun (Research Intern)
+### <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Stepfun, AIGC Foundation Dept. (Research Intern)
 - **RL Post-Training**
   *Mar. 2026 – Present*
 
@@ -199,5 +199,4 @@ See full publication list [here](/publications/).
 ### <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China (Advisor: [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp))
 - **Research on Detection of Coronary Artery Stenosis**
   *Nov. 2022 – Apr. 2024*
-
 

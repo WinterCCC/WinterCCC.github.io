@@ -61,6 +61,9 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <span class="news-date">[2026]</span> I am looking for 2027 Summer internship opportunities!
   </div>
   <div class="news-item">
+    <span class="news-date">[Sep 2026]</span> One paper accepted to <strong>EMNLP 2026</strong>!
+  </div>
+  <div class="news-item">
     <span class="news-date">[Feb 2026]</span> One paper accepted to <strong>CVPR 2026</strong>!
   </div>
   <div class="news-item">

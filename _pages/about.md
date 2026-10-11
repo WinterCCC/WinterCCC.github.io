@@ -89,6 +89,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 <style>
 .selected-pub {
   display: flex;
+  align-items: flex-start;
   margin-bottom: 20px;
   padding: 15px;
   border: 1px solid #e1e1e1;
@@ -96,12 +97,14 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
   background: #fafafa;
 }
 .selected-pub-image {
-  flex: 0 0 150px;
+  flex-shrink: 0;
+  width: 180px;
   margin-right: 15px;
 }
 .selected-pub-image img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .selected-pub-content {
   flex: 1;

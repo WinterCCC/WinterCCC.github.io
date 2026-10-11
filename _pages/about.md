@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am an incoming Ph.D. student at <img src="/images/vt_logo.png" alt="VT" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Virginia Tech, advised by Prof. [Shengwei An](https://answ.in/). Currently, I am a research intern in the **AIGC Foundation Dept.** at <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> [Stepfun](https://www.stepfun.com/), focusing on RL post-training. Previously, I was a research assistant at AGI Lab, <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
+I am a first-year Ph.D. student at <img src="/images/vt_logo.png" alt="VT" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Virginia Tech, advised by Prof. [Shengwei An](https://answ.in/). Previously, I was a research intern in the **AIGC Foundation Dept.** at <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> [Stepfun](https://www.stepfun.com/) (Mar. 2026 – Aug. 2026), focusing on RL post-training. Before that, I was a research assistant at AGI Lab, <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Westlake University, advised by Prof. [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/). I received my Bachelor's degree in Mathematics and Applied Mathematics from the School of Mathematical Sciences, <img src="/images/ouc_logo.png" alt="OUC" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Ocean University of China. During my undergraduate studies, I conducted research under the supervision of Prof. [Xueying Zeng](https://math.ouc.edu.cn/2017/0412/c8925a61424/page.psp) and [Furong Li](https://math.ouc.edu.cn/2020/1101/c8923a305349/page.htm).
 
 My research interests include **Generative Models**, **Trustworthy AI**, and **Post-Training**.
 
@@ -152,6 +152,20 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 <div class="selected-pub">
   <div class="selected-pub-image">
+    <img src="/images/stepx_opd_teaser.png" alt="StepX-OPD">
+  </div>
+  <div class="selected-pub-content">
+    <div class="selected-pub-title">StepX-OPD: Rethinking Multi-Teacher On-Policy Distillation in Diffusion Models</div>
+    <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Xuanyang Zhang, Yucheng Han, Wenbo Nie, Wei Cheng, Xianfang Zeng, Gang Yu, Chi Zhang</div>
+    <div class="selected-pub-venue">Preprint, 2026</div>
+    <div class="selected-pub-links">
+      <a href="https://winterccc.github.io/Step-OPD/">Project</a>
+    </div>
+  </div>
+</div>
+
+<div class="selected-pub">
+  <div class="selected-pub-image">
     <img src="/images/pmi_teaser.png" alt="PMI">
   </div>
   <div class="selected-pub-content">
@@ -187,7 +201,7 @@ See full publication list [here](/publications/).
 
 ### <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Stepfun, AIGC Foundation Dept. (Research Intern)
 - **RL Post-Training**
-  *Mar. 2026 – Present*
+  *Mar. 2026 – Aug. 2026*
 
 ### <img src="/images/westlake_logo.png" alt="Westlake" style="height:1.2em;vertical-align:middle;margin:0 2px;"> AGI Lab, Westlake University (Advisor: [Chi Zhang](https://icoz69.github.io/) and [Beier Zhu](https://beierzhu.github.io/))
 - **Research on Reinforcement Learning for Diffusion models and Flow models**

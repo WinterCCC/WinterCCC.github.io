@@ -160,6 +160,8 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-venue">Preprint, 2026</div>
     <div class="selected-pub-links">
       <a href="https://winterccc.github.io/Step-OPD/">Project</a>
+      <a href="https://huggingface.co/ShimaRinC/StepX-OPD-SD3.5">Model</a>
+      <a href="https://github.com/WinterCCC/StepX-OPD" class="code-link">Code</a>
     </div>
   </div>
 </div>

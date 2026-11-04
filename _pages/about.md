@@ -61,6 +61,9 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <span class="news-date">[2026]</span> I am looking for 2027 Summer internship opportunities!
   </div>
   <div class="news-item">
+    <span class="news-date">[Nov 2026]</span> <a href="https://arxiv.org/abs/2611.04386">StepX-OPD</a> is now on arXiv, with <a href="https://github.com/WinterCCC/StepX-OPD">code</a> and <a href="https://huggingface.co/ShimaRinC/StepX-OPD-SD3.5">weights</a> released.
+  </div>
+  <div class="news-item">
     <span class="news-date">[Sep 2026]</span> One paper accepted to <strong>EMNLP 2026</strong>!
   </div>
   <div class="news-item">
@@ -162,6 +165,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
     <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Xuanyang Zhang, Yucheng Han, Wenbo Nie, Wei Cheng, Xianfang Zeng, Gang Yu, Chi Zhang</div>
     <div class="selected-pub-venue">Preprint, 2026</div>
     <div class="selected-pub-links">
+      <a href="https://arxiv.org/abs/2611.04386">Paper</a>
       <a href="https://winterccc.github.io/Step-OPD/">Project</a>
       <a href="https://huggingface.co/ShimaRinC/StepX-OPD-SD3.5">Model</a>
       <a href="https://github.com/WinterCCC/StepX-OPD" class="code-link">Code</a>

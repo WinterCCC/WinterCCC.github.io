@@ -206,7 +206,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 See full publication list [here](/publications/).
 
 
-# Research Experience
+# Experience
 
 ### <img src="/images/stepfun_logo.png" alt="Stepfun" style="height:1.2em;vertical-align:middle;margin:0 2px;"> Stepfun, AIGC Foundation Dept. (Research Intern)
 - **RL Post-Training**

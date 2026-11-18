@@ -347,7 +347,29 @@
     });
   }
 
+  /* Palette switcher: two token sets on <html data-palette>; the choice is remembered when storage works. */
+  function initPalette() {
+    var buttons = document.querySelectorAll("[data-palette-set]");
+    function sync() {
+      var current = document.documentElement.getAttribute("data-palette") || "pipeline";
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", b.dataset.paletteSet === current ? "true" : "false");
+      });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        document.documentElement.setAttribute("data-palette", b.dataset.paletteSet);
+        try {
+          window.localStorage.setItem("dooop-palette", b.dataset.paletteSet);
+        } catch (e) {}
+        sync();
+      });
+    });
+    sync();
+  }
+
   function init() {
+    initPalette();
     initImageFallback();
     buildPromptSelect($("prompt-select"));
     buildPromptSelect($("prompt-select-2"));

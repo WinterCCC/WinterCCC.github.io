@@ -848,3 +848,380 @@ table.data b {
     padding: 8px 10px;
   }
 }
+
+/* Method animations */
+.anim {
+  margin: 32px 0 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.anim-title {
+  margin: 0 0 12px;
+}
+
+.anim-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  font-family: var(--sans);
+}
+
+.anim-step-btn {
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.anim-step-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.anim-step-btn[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.anim-opt {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.anim-opt-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.segmented-sm button {
+  padding: 5px 10px;
+  min-width: 36px;
+  font-size: 0.9rem;
+}
+
+.anim-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.anim-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text);
+  font-family: var(--sans);
+  overflow: visible;
+}
+
+.anim-svg .lbl {
+  font-size: 15px;
+  font-weight: 600;
+  fill: currentColor;
+}
+
+.anim-svg .tiny {
+  font-size: 12px;
+  fill: var(--muted);
+}
+
+.anim-svg .tiny.strong {
+  font-weight: 700;
+  fill: var(--accent);
+}
+
+.anim-svg .micro {
+  font-size: 9px;
+  fill: var(--muted);
+}
+
+.anim-svg .sub {
+  font-size: 0.72em;
+}
+
+.anim-svg .node rect,
+.anim-svg .node circle {
+  fill: var(--surface);
+  stroke: var(--muted);
+  stroke-width: 1.4;
+}
+
+.anim-svg .node.teacher rect {
+  fill: var(--placeholder);
+  stroke: var(--line);
+}
+
+.anim-svg .lock rect,
+.anim-svg .lock path {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+
+.anim-svg .node.shared rect {
+  stroke-width: 2;
+}
+
+.anim-svg .wire {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.4;
+}
+
+.anim-svg .wire.dashed,
+.anim-svg .dashed {
+  stroke-dasharray: 5 4;
+}
+
+.anim-svg .mk {
+  fill: var(--muted);
+}
+
+.anim-svg .mk-accent {
+  fill: var(--accent);
+}
+
+.anim-svg .star {
+  fill: var(--text);
+}
+
+.anim-svg .axis {
+  stroke: var(--line);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.anim-svg .seg {
+  stroke: var(--accent);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: x1 0.5s ease, x2 0.5s ease;
+}
+
+.anim-svg .tick {
+  stroke: var(--muted);
+  stroke-width: 1.6;
+}
+
+.anim-svg .tick.is-on,
+.anim-svg text.is-on {
+  stroke: var(--accent);
+  fill: var(--accent);
+}
+
+.anim-svg .tick.is-on {
+  stroke-width: 2.4;
+}
+
+/* State classes shared by both animations. */
+.anim-svg .is-dim {
+  opacity: 0.32;
+}
+
+.anim-svg g,
+.anim-svg path,
+.anim-svg text {
+  transition: opacity 0.35s ease;
+}
+
+.anim-svg .node.is-on rect,
+.anim-svg .node.is-on circle {
+  stroke: var(--accent);
+  stroke-width: 2.2;
+  fill: var(--accent-soft);
+}
+
+.anim-svg .node.teacher.is-on rect {
+  fill: var(--placeholder);
+  stroke: var(--muted);
+}
+
+.anim-svg .wire.is-on {
+  stroke: var(--accent);
+}
+
+.anim-svg .node.pulse rect {
+  animation: anim-pulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes anim-pulse {
+  from {
+    stroke-width: 2;
+  }
+  to {
+    stroke-width: 5;
+  }
+}
+
+/* Velocity panel. */
+.anim-svg .panel {
+  fill: var(--bg);
+  stroke: var(--line);
+}
+
+.anim-svg .dot {
+  fill: var(--muted);
+}
+
+.anim-svg .dot.on {
+  fill: var(--accent);
+}
+
+.anim-svg .muted-dot {
+  fill: var(--muted);
+}
+
+.anim-svg .target {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.4;
+}
+
+.anim-svg .target.on {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.anim-svg .guide {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.anim-svg .guide.on {
+  stroke: var(--accent);
+}
+
+.anim-svg .trail {
+  stroke: var(--muted);
+  stroke-width: 1.6;
+}
+
+.anim-svg .err {
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+}
+
+.anim-svg .vec {
+  stroke: var(--muted);
+  stroke-width: 2;
+}
+
+.anim-svg .vec.on {
+  stroke: var(--accent);
+  stroke-width: 2.6;
+}
+
+.anim-svg .weakvec {
+  stroke-dasharray: 5 4;
+}
+
+/* Image tile. */
+.anim-svg .tile-frame {
+  fill: none;
+  stroke: var(--line);
+}
+
+.anim-svg .chip-bg {
+  fill: var(--surface);
+  opacity: 0.9;
+}
+
+.anim-caption {
+  min-height: 3.4em;
+  margin: 14px 0 10px;
+  font-size: 1rem;
+}
+
+.anim-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--sans);
+}
+
+.anim-chips button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.anim-chips button:hover {
+  color: var(--accent);
+}
+
+.anim-chips button[aria-current="step"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.paper-fig {
+  margin-top: 16px;
+  font-family: var(--sans);
+}
+
+.paper-fig summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.figure-in-details {
+  margin-top: 12px;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-svg .seg,
+  .anim-svg g,
+  .anim-svg path,
+  .anim-svg text {
+    transition: none;
+  }
+
+  .anim-svg .node.pulse rect {
+    animation: none;
+    stroke-width: 3.5;
+  }
+}
+
+@media (max-width: 760px) {
+  .anim {
+    padding: 14px;
+  }
+
+  .anim-stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .anim-side {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}

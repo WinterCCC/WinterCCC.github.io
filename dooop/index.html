@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dooop: Distill to Loop</title>
+  <meta name="description" content="Dooop distills a pretrained non-looped diffusion transformer into a looped student that runs any number of loops at test time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="topnav" aria-label="Sections">
+    <div class="topnav-inner">
+      <a class="brand" href="#top">Dooop</a>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#loops">Loops</a></li>
+        <li><a href="#compare">Compare</a></li>
+        <li><a href="#method">Method</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header" id="top">
+    <div class="wrap">
+      <h1>Dooop: Distill to Loop</h1>
+      <p class="subtitle">Distilling a pretrained diffusion transformer into a looped student that runs any number of loops at test time.</p>
+      <p class="authors">Chenru Wang, Shengwei An</p>
+      <div class="links">
+        <span class="btn is-disabled" role="link" aria-disabled="true">Paper <small>coming soon</small></span>
+        <span class="btn is-disabled" role="link" aria-disabled="true">arXiv <small>coming soon</small></span>
+        <span class="btn is-disabled" role="link" aria-disabled="true">Code <small>coming soon</small></span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <figure class="reel">
+          <div class="reel-frame media" id="reel-frame">
+            <img id="reel-img" src="assets/samples/main-1-teacher.jpg" width="285" height="285" alt="Teacher sample for the prompt: a photo of three apples">
+          </div>
+          <figcaption>
+            <span class="reel-label" id="reel-label">Teacher</span>
+            <span class="reel-prompt" id="reel-prompt">&ldquo;a photo of three apples&rdquo;</span>
+          </figcaption>
+        </figure>
+        <div class="hero-text">
+          <h2 id="hero-title">One model, any number of loops</h2>
+          <p>The reel steps through the SD3-medium teacher and then Dooop with K = 1, 2, 3, 4, 8 and 16 loops. Every frame starts from the same initial noise.</p>
+          <ol class="reel-steps" id="reel-steps" aria-label="Reel frames"></ol>
+          <button type="button" class="btn btn-toggle" id="reel-toggle" aria-pressed="true" aria-controls="reel-frame">Pause</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section" aria-labelledby="overview-title">
+      <div class="wrap">
+        <h2 id="overview-title">Overview</h2>
+        <div class="narrow-left">
+        <p>Looped transformers reuse one block of shared weights along the depth of the network. Recent looped diffusion transformers are trained from scratch, which repeats the full pretraining cost even though strong pretrained non-looped diffusion transformers already exist.</p>
+        <p>Dooop distills a pretrained non-looped diffusion transformer into a looped student. The student keeps a few leading and trailing blocks of the teacher and replaces the middle stack by a small set of shared blocks that are looped. Every block of the student starts from a teacher block.</p>
+        <p>We cast distillation as a fixed-point iteration toward the teacher: the output after every loop is trained toward the teacher, and each loop is one step of an ordinary differential equation in depth. As a result, one model runs any number of loops at test time without retraining, and the higher-order ODE solvers of diffusion sampling can be applied along depth. Because a looped model produces an output after every loop, we also build loop guidance between the outputs of different loop counts, which improves samples at little extra compute.</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <ul class="stats" aria-label="Key numbers on SD3-medium">
+          <li><span class="stat-value">0.756B</span><span class="stat-label">student parameters, about 37% of the teacher's</span></li>
+          <li><span class="stat-value"><small>about</small> 58%</span><span class="stat-label">of the teacher's compute with two loops</span></li>
+          <li><span class="stat-value">100.7 <small>vs 100</small></span><span class="stat-label">average over GenEval, ImageReward, PickScore and HPSv2.1 with two loops, teacher = 100</span></li>
+          <li><span class="stat-value">105.8</span><span class="stat-label">average after continued training on real data; GenEval 0.707 vs the teacher's 0.648</span></li>
+          <li><span class="stat-value">88.2 &rarr; 99.2</span><span class="stat-label">average of a four-step student with loop guidance, at 7.21 &rarr; 7.79 TFLOPs per image</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="loops" class="section alt" aria-labelledby="loops-title">
+      <div class="wrap">
+        <h2 id="loops-title">Any number of loops</h2>
+        <p class="lede">Pick a prompt and a loop count. The Dooop sample is shown next to the teacher sample from the same initial noise. Changing the prompt keeps the selected K.</p>
+        <div class="controls">
+          <label class="field">
+            <span>Prompt</span>
+            <select id="prompt-select"></select>
+          </label>
+          <div class="field">
+            <span id="k-label-loops">Loops (K)</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="k-label-loops" data-k-group="viewer"></div>
+          </div>
+        </div>
+        <div class="pair" id="viewer">
+          <figure>
+            <div class="media square"><img id="viewer-teacher" alt="" width="285" height="285"></div>
+            <figcaption>Teacher (SD3-medium, 2.03B)</figcaption>
+          </figure>
+          <figure>
+            <div class="media square"><img id="viewer-student" alt="" width="285" height="285"></div>
+            <figcaption id="viewer-student-cap">Dooop, K = 2</figcaption>
+          </figure>
+        </div>
+        <p class="prompt-line" id="viewer-prompt"></p>
+      </div>
+    </section>
+
+    <section id="compare" class="section" aria-labelledby="compare-title">
+      <div class="wrap">
+        <h2 id="compare-title">Teacher vs. Dooop</h2>
+        <p class="lede">The Dooop sample is drawn on top of the teacher sample. Move the slider to fade between them. The prompt and K follow the selection above.</p>
+        <div class="controls">
+          <label class="field">
+            <span>Prompt</span>
+            <select id="prompt-select-2"></select>
+          </label>
+          <div class="field">
+            <span id="k-label-compare">Loops (K)</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="k-label-compare" data-k-group="compare"></div>
+          </div>
+        </div>
+        <div class="overlay-wrap">
+          <div class="overlay media square" id="overlay">
+            <img id="overlay-teacher" alt="" width="285" height="285">
+            <img id="overlay-student" class="overlay-top" alt="" width="285" height="285">
+          </div>
+          <label class="slider">
+            <span>Dooop opacity <output id="opacity-out" for="opacity">50%</output></span>
+            <input type="range" id="opacity" min="0" max="100" step="1" value="50">
+          </label>
+          <div class="slider-ends" aria-hidden="true"><span>Teacher</span><span id="overlay-k-end">Dooop, K = 2</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="method" class="section alt" aria-labelledby="method-title">
+      <div class="wrap">
+        <h2 id="method-title">Method</h2>
+        <div class="narrow-left">
+          <p>Each loop moves the student a step toward the teacher. The target for the output after a loop mixes the previous loop's output and the teacher velocity, so every loop is pulled toward the teacher and the last loop reaches it. The loops are indexed by a continuous depth coordinate from 0 to 1, so every loop count covers the same depth interval and the loop count is chosen at inference. Training uses noisy data states and rollout states from a sampler that combines the teacher and the current student, so training covers the states the student meets when it samples.</p>
+        </div>
+        <figure class="figure">
+          <a class="figure-link" href="assets/figures/training-pipeline.png" aria-label="Open the full-size figure"><img src="assets/figures/training-pipeline.png" width="2000" height="799" loading="lazy" alt="Diagram of the Dooop training pipeline: the looped student is initialized from the frozen teacher, batches mix noisy data states and rollout states, and the output after every loop is regressed to its own target."></a>
+          <figcaption>Training pipeline of Dooop. (a) The looped student is initialized from the frozen non-looped teacher. (b) Each training batch mixes noisy data states with rollout states, which are regenerated at every training step. (c) Each loop combines the previous hidden state and the output of the shared looped blocks, weighted by the depth step. All loops share the same blocks and the same output module. The output after every loop is regressed to its own target, which mixes the stop-gradient previous output and the teacher velocity, so the last target is the teacher velocity itself.</figcaption>
+        </figure>
+        <figure class="figure">
+          <a class="figure-link" href="assets/figures/loop-guidance.png" aria-label="Open the full-size figure"><img src="assets/figures/loop-guidance.png" width="2000" height="559" loading="lazy" alt="Diagram of loop guidance: the strong prediction is the output after the last loop and the weak prediction is the output after an earlier loop of the same forward pass."></a>
+          <figcaption>Loop guidance at one sampling step of the four-step Dooop student, sampled without classifier-free guidance. (a) The strong prediction is the output after the last loop. The weak prediction is the output after an earlier loop of the same forward pass, which costs one extra application of the output module. The dashed path shows the alternative, a separate forward pass with fewer loops. (b) The sampler extrapolates from the weak prediction past the strong one with the loop guidance scale and moves to the next noise level; a scale of 1 recovers plain sampling.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="results" class="section" aria-labelledby="results-title">
+      <div class="wrap">
+        <h2 id="results-title">Results</h2>
+
+        <h3 id="sd3-title">Text-to-image generation with SD3-medium as the teacher</h3>
+        <p class="note">Avg. (%) is the average over GenEval, ImageReward, PickScore and HPSv2.1 relative to the teacher (teacher = 100.0). Best student result of each part in bold.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-labelledby="sd3-title">
+          <table class="data">
+            <caption class="visually-hidden">Text-to-image generation with SD3-medium as the teacher. Best student result of each part in bold.</caption>
+            <thead>
+              <tr>
+                <th scope="col" rowspan="2">Model</th>
+                <th scope="col" rowspan="2">TFLOPs</th>
+                <th scope="col" rowspan="2">K</th>
+                <th scope="colgroup" colspan="7">GenEval &uarr;</th>
+                <th scope="col" rowspan="2">Image&shy;Reward &uarr;</th>
+                <th scope="col" rowspan="2">Pick&shy;Score &uarr;</th>
+                <th scope="col" rowspan="2">HPSv2.1 &uarr;</th>
+                <th scope="col" rowspan="2">Avg. (%) &uarr;</th>
+              </tr>
+              <tr>
+                <th scope="col">Single obj.</th>
+                <th scope="col">Two obj.</th>
+                <th scope="col">Counting</th>
+                <th scope="col">Colors</th>
+                <th scope="col">Position</th>
+                <th scope="col">Color attr.</th>
+                <th scope="col">Overall</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="teacher-row"><th scope="row">SD3-medium (teacher)</th><td>50.5</td><td>&ndash;</td><td>0.994</td><td>0.753</td><td>0.506</td><td>0.840</td><td>0.285</td><td>0.508</td><td>0.648</td><td>0.908</td><td>22.214</td><td>0.278</td><td>100.0</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group-row"><th scope="rowgroup" colspan="14">Distill</th></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>18.9</td><td>1</td><td>0.988</td><td>0.737</td><td>0.322</td><td>0.811</td><td>0.248</td><td>0.428</td><td>0.589</td><td>0.663</td><td>21.790</td><td>0.259</td><td>88.8</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>29.4</td><td>2</td><td><b>0.991</b></td><td><b>0.838</b></td><td>0.456</td><td><b>0.856</b></td><td><b>0.288</b></td><td>0.535</td><td><b>0.661</b></td><td>0.924</td><td>22.245</td><td>0.275</td><td>100.7</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>39.9</td><td>3</td><td>0.984</td><td>0.813</td><td>0.466</td><td>0.843</td><td>0.270</td><td>0.550</td><td>0.654</td><td><b>0.933</b></td><td>22.307</td><td><b>0.276</b></td><td><b>100.9</b></td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>50.5</td><td>4</td><td>0.988</td><td>0.795</td><td><b>0.503</b></td><td>0.830</td><td>0.273</td><td><b>0.565</b></td><td>0.659</td><td>0.919</td><td><b>22.312</b></td><td><b>0.276</b></td><td>100.7</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>92.6</td><td>8</td><td>0.984</td><td>0.803</td><td>0.475</td><td>0.832</td><td>0.245</td><td>0.548</td><td>0.648</td><td>0.889</td><td>22.278</td><td>0.275</td><td>99.3</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>177.0</td><td>16</td><td><b>0.991</b></td><td>0.760</td><td>0.438</td><td>0.838</td><td>0.250</td><td>0.525</td><td>0.633</td><td>0.853</td><td>22.229</td><td>0.273</td><td>97.6</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group-row"><th scope="rowgroup" colspan="14">+ Real data (training continued on real images after distillation)</th></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>18.9</td><td>1</td><td>0.994</td><td>0.811</td><td>0.394</td><td>0.846</td><td>0.305</td><td>0.495</td><td>0.641</td><td>0.770</td><td>21.831</td><td>0.267</td><td>94.5</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>29.4</td><td>2</td><td><b>0.997</b></td><td>0.879</td><td>0.497</td><td>0.880</td><td><b>0.353</b></td><td><b>0.635</b></td><td>0.707</td><td>1.021</td><td>22.282</td><td>0.281</td><td>105.8</td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>39.9</td><td>3</td><td>0.994</td><td><b>0.889</b></td><td>0.522</td><td><b>0.886</b></td><td>0.343</td><td>0.608</td><td>0.707</td><td><b>1.039</b></td><td><b>22.391</b></td><td><b>0.284</b></td><td><b>106.6</b></td></tr>
+              <tr><th scope="row">Dooop (ours)</th><td>50.5</td><td>4</td><td><b>0.997</b></td><td>0.884</td><td><b>0.547</b></td><td>0.878</td><td>0.343</td><td>0.610</td><td><b>0.710</b></td><td>1.037</td><td>22.390</td><td>0.283</td><td><b>106.6</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="compute-title">Compute per image</h3>
+        <p class="note">TFLOPs per image from the table above. The student with four loops costs the same per-image compute as the teacher.</p>
+        <div class="bars" role="list" aria-labelledby="compute-title">
+          <div class="bar-row teacher" role="listitem"><span class="bar-name">Teacher</span><span class="bar-track"><span class="bar-fill" data-value="50.5"></span></span><span class="bar-value">50.5</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 1</span><span class="bar-track"><span class="bar-fill" data-value="18.9"></span></span><span class="bar-value">18.9</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 2</span><span class="bar-track"><span class="bar-fill" data-value="29.4"></span></span><span class="bar-value">29.4</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 3</span><span class="bar-track"><span class="bar-fill" data-value="39.9"></span></span><span class="bar-value">39.9</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 4</span><span class="bar-track"><span class="bar-fill" data-value="50.5"></span></span><span class="bar-value">50.5</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 8</span><span class="bar-track"><span class="bar-fill" data-value="92.6"></span></span><span class="bar-value">92.6</span></div>
+          <div class="bar-row" role="listitem"><span class="bar-name">Dooop K = 16</span><span class="bar-track"><span class="bar-fill" data-value="177.0"></span></span><span class="bar-value">177.0</span></div>
+        </div>
+
+        <h3 id="lg-title">Loop guidance on a four-step student</h3>
+        <p class="note">The student is the CDM-distilled four-step SD3 student, and the teacher is the four-step CDM model. The weak model is either a separate forward pass with k loops or the output after loop k of the same K = 4 forward pass. Best student result in bold.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-labelledby="lg-title">
+          <table class="data">
+            <caption class="visually-hidden">Loop guidance on the four-step SD3 student. Best student result in bold.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Setting</th>
+                <th scope="col">w<sub>l</sub></th>
+                <th scope="col">NFE</th>
+                <th scope="col">TFLOPs</th>
+                <th scope="col">GenEval &uarr;</th>
+                <th scope="col">Image&shy;Reward &uarr;</th>
+                <th scope="col">Pick&shy;Score &uarr;</th>
+                <th scope="col">HPSv2.1 &uarr;</th>
+                <th scope="col">Avg. &uarr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="teacher-row"><th scope="row">Teacher</th><td>&ndash;</td><td>4</td><td>7.21</td><td>0.651</td><td>1.026</td><td>22.822</td><td>0.298</td><td>100.0</td></tr>
+              <tr><th scope="row">Student</th><td>1</td><td>4</td><td>7.21</td><td>0.592</td><td>0.739</td><td>22.381</td><td>0.273</td><td>88.2</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group-row"><th scope="rowgroup" colspan="9">Weak model: separate k-loop forward</th></tr>
+              <tr><th scope="row">k = 1</th><td>2</td><td>8</td><td>9.90</td><td>0.639</td><td>0.941</td><td>22.568</td><td>0.290</td><td>96.5</td></tr>
+              <tr><th scope="row">k = 1</th><td>3</td><td>8</td><td>9.90</td><td>0.636</td><td>0.975</td><td>22.416</td><td>0.295</td><td>97.5</td></tr>
+              <tr><th scope="row">k = 2</th><td>3</td><td>8</td><td>11.41</td><td>0.627</td><td>0.907</td><td>22.540</td><td>0.288</td><td>95.0</td></tr>
+              <tr><th scope="row">k = 2</th><td>4</td><td>8</td><td>11.41</td><td>0.631</td><td>0.935</td><td>22.488</td><td>0.291</td><td>96.1</td></tr>
+            </tbody>
+            <tbody>
+              <tr class="group-row"><th scope="rowgroup" colspan="9">Weak model: loop-k output of the same forward</th></tr>
+              <tr><th scope="row">k = 1</th><td>2</td><td>4</td><td>7.79</td><td><b>0.643</b></td><td>1.002</td><td>22.575</td><td>0.296</td><td>98.7</td></tr>
+              <tr><th scope="row">k = 1</th><td>3</td><td>4</td><td>7.79</td><td>0.633</td><td><b>1.029</b></td><td>22.248</td><td>0.293</td><td>98.3</td></tr>
+              <tr><th scope="row">k = 2</th><td>2</td><td>4</td><td>7.79</td><td>0.634</td><td>0.971</td><td><b>22.613</b></td><td>0.294</td><td>97.4</td></tr>
+              <tr><th scope="row">k = 2</th><td>3</td><td>4</td><td>7.79</td><td><b>0.643</b></td><td>1.025</td><td>22.454</td><td><b>0.297</b></td><td><b>99.2</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="kcurve-title">Metrics during training</h3>
+        <figure class="figure">
+          <a class="figure-link" href="assets/figures/kcurve-sd3.png" aria-label="Open the full-size figure"><img src="assets/figures/kcurve-sd3.png" width="2000" height="553" loading="lazy" alt="Four line plots of GenEval, ImageReward, PickScore and HPSv2.1 for Dooop on SD3-medium with K = 2, 3 and 4 loops over training, with a dotted line for the teacher."></a>
+          <figcaption>GenEval, ImageReward, PickScore and HPSv2.1 of Dooop on SD3-medium with K = 2, 3, 4 loops during training. The dotted line marks the teacher.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="gallery" class="section alt" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <h2 id="gallery-title">Gallery</h2>
+        <p class="lede">All prompts at one loop count. Select a tile to open it in the viewer above.</p>
+        <div class="controls">
+          <div class="field">
+            <span id="k-label-gallery">Loops (K)</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="k-label-gallery" data-k-group="gallery"></div>
+          </div>
+        </div>
+        <ul class="gallery" id="gallery-grid"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="wrap footer-inner">
+      <span>Dooop: Distill to Loop</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <a class="to-top" id="to-top" href="#top" aria-label="Back to top" hidden>&uarr;</a>
+
+  <script src="assets/js/samples.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

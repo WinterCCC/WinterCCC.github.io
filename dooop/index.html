@@ -145,52 +145,39 @@
         <div class="narrow-left">
           <p>Each loop moves the student a step toward the teacher. The target for the output after a loop mixes the previous loop's output and the teacher velocity, so every loop is pulled toward the teacher and the last loop reaches it. The loops are indexed by a continuous depth coordinate from 0 to 1, so every loop count covers the same depth interval and the loop count is chosen at inference. Training uses noisy data states and rollout states from a sampler that combines the teacher and the current student, so training covers the states the student meets when it samples.</p>
         </div>
-        <figure class="anim" id="anim-train" aria-labelledby="anim-train-title">
+        <figure class="anim" id="anim-train" data-anim="train" aria-labelledby="anim-train-title">
           <h3 class="anim-title" id="anim-train-title">Training, step by step</h3>
           <div class="anim-toolbar">
             <button type="button" class="btn btn-toggle anim-play" aria-pressed="true">Pause</button>
             <button type="button" class="anim-step-btn anim-prev" aria-label="Previous step">&larr; Prev</button>
             <button type="button" class="anim-step-btn anim-next" aria-label="Next step">Next &rarr;</button>
           </div>
-          <div class="anim-stage">
-            <svg class="anim-svg anim-main" role="img" aria-labelledby="anim-train-title anim-train-caption"></svg>
-            <svg class="anim-svg anim-side" role="img" aria-label="Velocity space panel"></svg>
+          <div class="spot-wrap">
+            <div class="spot-stage">
+              <img class="spot-base" src="assets/figures/training-pipeline.svg" width="1049" height="419" alt="Training pipeline of Dooop: (a) the looped student initialized from the frozen teacher, (b) training states mixing noisy data states and rollout states, (c) the student forward pass with per-round targets.">
+              <div class="spot-ring" aria-hidden="true"></div>
+            </div>
+            <div class="spot-zoom" aria-hidden="true"><div class="spot-zoom-inner"><img src="assets/figures/training-pipeline.svg" alt=""></div></div>
           </div>
-          <p class="anim-caption" id="anim-train-caption" aria-live="polite"></p>
+          <p class="anim-caption" aria-live="polite"></p>
           <ol class="anim-chips" aria-label="Steps"></ol>
-          <details class="paper-fig">
-            <summary>Paper figure</summary>
-            <figure class="figure figure-in-details">
-              <a class="figure-link" href="assets/figures/training-pipeline.png" aria-label="Open the full-size figure"><img src="assets/figures/training-pipeline.png" width="2000" height="799" loading="lazy" alt="Diagram of the Dooop training pipeline: the looped student is initialized from the frozen teacher, batches mix noisy data states and rollout states, and the output after every loop is regressed to its own target."></a>
-              <figcaption>Training pipeline of Dooop. (a) The looped student is initialized from the frozen non-looped teacher. (b) Each training batch mixes noisy data states with rollout states, which are regenerated at every training step. (c) Each loop combines the previous hidden state and the output of the shared looped blocks, weighted by the depth step. All loops share the same blocks and the same output module. The output after every loop is regressed to its own target, which mixes the stop-gradient previous output and the teacher velocity, so the last target is the teacher velocity itself.</figcaption>
-            </figure>
-          </details>
         </figure>
-        <figure class="anim" id="anim-infer" aria-labelledby="anim-infer-title">
-          <h3 class="anim-title" id="anim-infer-title">Inference, step by step</h3>
+        <figure class="anim" id="anim-infer" data-anim="infer" aria-labelledby="anim-infer-title">
+          <h3 class="anim-title" id="anim-infer-title">Inference with loop guidance, step by step</h3>
           <div class="anim-toolbar">
             <button type="button" class="btn btn-toggle anim-play" aria-pressed="true">Pause</button>
             <button type="button" class="anim-step-btn anim-prev" aria-label="Previous step">&larr; Prev</button>
             <button type="button" class="anim-step-btn anim-next" aria-label="Next step">Next &rarr;</button>
-            <div class="anim-opt">
-              <span class="anim-opt-label" id="anim-infer-k-label">K</span>
-              <div class="segmented segmented-sm anim-k" role="radiogroup" aria-labelledby="anim-infer-k-label"></div>
+          </div>
+          <div class="spot-wrap">
+            <div class="spot-stage">
+              <img class="spot-base" src="assets/figures/loop-guidance.svg" width="1049" height="293" alt="Loop guidance at one sampling step: (a) strong and weak predictions of the student, (b) the loop guidance combination and the sampler step.">
+              <div class="spot-ring" aria-hidden="true"></div>
             </div>
-            <button type="button" class="anim-step-btn anim-lg" aria-pressed="true">Loop guidance: on</button>
+            <div class="spot-zoom" aria-hidden="true"><div class="spot-zoom-inner"><img src="assets/figures/loop-guidance.svg" alt=""></div></div>
           </div>
-          <div class="anim-stage">
-            <svg class="anim-svg anim-main" role="img" aria-labelledby="anim-infer-title anim-infer-caption"></svg>
-            <svg class="anim-svg anim-side" role="img" aria-label="Velocity space panel"></svg>
-          </div>
-          <p class="anim-caption" id="anim-infer-caption" aria-live="polite"></p>
+          <p class="anim-caption" aria-live="polite"></p>
           <ol class="anim-chips" aria-label="Steps"></ol>
-          <details class="paper-fig">
-            <summary>Paper figure</summary>
-            <figure class="figure figure-in-details">
-              <a class="figure-link" href="assets/figures/loop-guidance.png" aria-label="Open the full-size figure"><img src="assets/figures/loop-guidance.png" width="2000" height="559" loading="lazy" alt="Diagram of loop guidance: the strong prediction is the output after the last loop and the weak prediction is the output after an earlier loop of the same forward pass."></a>
-              <figcaption>Loop guidance at one sampling step of the four-step Dooop student, sampled without classifier-free guidance. (a) The strong prediction is the output after the last loop. The weak prediction is the output after an earlier loop of the same forward pass, which costs one extra application of the output module. The dashed path shows the alternative, a separate forward pass with fewer loops. (b) The sampler extrapolates from the weak prediction past the strong one with the loop guidance scale and moves to the next noise level; a scale of 1 recovers plain sampling.</figcaption>
-            </figure>
-          </details>
         </figure>
       </div>
     </section>
@@ -332,6 +319,7 @@
 
   <script src="assets/js/samples.js"></script>
   <script src="assets/js/app.js"></script>
+  <script src="assets/js/anim-steps.js"></script>
   <script src="assets/js/anim.js"></script>
 </body>
 </html>

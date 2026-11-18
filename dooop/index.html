@@ -4,6 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dooop: Distill to Loop</title>
+  <script>
+    /* Apply the palette before first paint: ?palette= override, then the stored choice, else Pipeline. */
+    (function () {
+      var palette = "pipeline";
+      var valid = { pipeline: true, maroon: true };
+      try {
+        var fromUrl = new URLSearchParams(window.location.search).get("palette");
+        var stored = null;
+        try {
+          stored = window.localStorage.getItem("dooop-palette");
+        } catch (e) {}
+        if (valid[fromUrl]) {
+          palette = fromUrl;
+        } else if (valid[stored]) {
+          palette = stored;
+        }
+      } catch (e) {}
+      document.documentElement.setAttribute("data-palette", palette);
+    })();
+  </script>
   <meta name="description" content="Dooop distills a pretrained non-looped diffusion transformer into a looped student that runs any number of loops at test time.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +44,10 @@
         <li><a href="#results">Results</a></li>
         <li><a href="#gallery">Gallery</a></li>
       </ul>
+      <div class="palette-switch" role="group" aria-label="Palette">
+        <button type="button" data-palette-set="pipeline" aria-pressed="true" title="Pipeline palette"><span class="swatch swatch-pipeline" aria-hidden="true"></span><span class="palette-name">Pipeline</span></button>
+        <button type="button" data-palette-set="maroon" aria-pressed="false" title="Maroon palette"><span class="swatch swatch-maroon" aria-hidden="true"></span><span class="palette-name">Maroon</span></button>
+      </div>
     </div>
   </nav>
 

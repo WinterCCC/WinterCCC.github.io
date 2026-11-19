@@ -12,11 +12,15 @@
   --swatch-maroon-line: #861f41;
 }
 
-/* Palette "Pipeline" (default): colors of the paper pipeline figures. */
+/* Palette "Pipeline" (default): colors of the paper pipeline figures.
+   Always light and white, also when the OS asks for dark mode. */
 :root,
 :root[data-palette="pipeline"] {
-  --bg: #fbfbfa;
-  --bg-alt: #f4f4f2;
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-alt: #f6f6f6;
+  --section-alt-bg: #ffffff;
+  --section-rule: 1px solid #e2e2e2;
   --surface: #ffffff;
   --text: #151515;
   --muted: #5f5f5f;
@@ -44,50 +48,18 @@
   --fab-bg: #c4e1b4;
   --fab-text: #151515;
   --fab-border: #bdbdbd;
-  --spot-dim: rgba(251, 251, 250, 0.62);
+  --spot-dim: rgba(255, 255, 255, 0.62);
   --spot-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
   --zoom-glow: 0 0 0 6px #c4e1b4;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root,
-  :root[data-palette="pipeline"] {
-    --bg: #141414;
-    --bg-alt: #191919;
-    --surface: #1e1e1e;
-    --text: #eaeaea;
-    --muted: #a6a6a6;
-    --line: #333333;
-    --line-strong: #555555;
-    --accent: #a9d39a;
-    --accent-soft: #22301e;
-    --accent-text: #141414;
-    --placeholder: #262626;
-    --figure-bg: #ffffff;
-    --shadow: none;
-    --hover-text: #e4f2dc;
-    --sel-bg: #2f4429;
-    --sel-text: #e4f2dc;
-    --sel-border: #555555;
-    --cur-bg: #2f4429;
-    --cur-text: #e4f2dc;
-    --cur-border: #555555;
-    --card-accent: #2f4429;
-    --bar: #6f9a62;
-    --bar-teacher: #8b8b8b;
-    --fab-bg: #2f4429;
-    --fab-text: #e4f2dc;
-    --fab-border: #555555;
-    --spot-dim: rgba(20, 20, 20, 0.62);
-    --spot-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
-    --zoom-glow: 0 0 0 6px #2f4429;
-  }
-}
-
 /* Palette "Maroon": the earlier Virginia Tech maroon theme, values unchanged. */
 :root[data-palette="maroon"] {
+  color-scheme: light dark;
   --bg: #faf8f5;
   --bg-alt: #f4f1ec;
+  --section-alt-bg: var(--bg-alt);
+  --section-rule: 0 solid transparent;
   --surface: #ffffff;
   --text: #1f1d1b;
   --muted: #635c55;
@@ -517,7 +489,9 @@ h3 {
 }
 
 .section.alt {
-  background: var(--bg-alt);
+  background: var(--section-alt-bg);
+  border-top: var(--section-rule);
+  border-bottom: var(--section-rule);
 }
 
 .lede,

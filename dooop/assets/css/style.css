@@ -545,6 +545,23 @@ h3 {
   line-height: 1.45;
 }
 
+/* Promo video */
+.video-section {
+  padding-top: 8px;
+}
+
+.promo-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
 /* Controls */
 .controls {
   display: flex;

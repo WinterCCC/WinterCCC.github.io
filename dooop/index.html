@@ -90,7 +90,7 @@
     <section id="video" class="section video-section" aria-labelledby="video-title">
       <div class="wrap">
         <h2 id="video-title">Video</h2>
-        <p class="lede">A 45-second summary of how Dooop distills a teacher into a looped student, runs any number of loops, and guides itself with an earlier loop.</p>
+        <p class="lede">A one-minute summary of how Dooop distills a teacher into a looped student, runs any number of loops, guides itself with an earlier loop, and improves during training.</p>
         <video class="promo-video" controls muted playsinline preload="metadata" poster="assets/video/dooop-poster.jpg" width="1920" height="1080">
           <source src="assets/video/dooop.mp4" type="video/mp4">
           Your browser cannot play this video. <a href="assets/video/dooop.mp4">Download the MP4</a>.
@@ -186,16 +186,15 @@
             <button type="button" class="btn btn-toggle anim-play" aria-pressed="true">Pause</button>
             <button type="button" class="anim-step-btn anim-prev" aria-label="Previous step">&larr; Prev</button>
             <button type="button" class="anim-step-btn anim-next" aria-label="Next step">Next &rarr;</button>
+            <span class="anim-counter" aria-hidden="true"></span>
           </div>
-          <div class="spot-wrap">
-            <div class="spot-stage">
-              <img class="spot-base" src="assets/figures/training-pipeline.svg" width="1049" height="419" alt="Training pipeline of Dooop: (a) the looped student initialized from the frozen teacher, (b) training states mixing noisy data states and rollout states, (c) the student forward pass with per-round targets.">
-              <div class="spot-ring" aria-hidden="true"></div>
+          <div class="build-scroll">
+            <div class="build-stage">
+              <img src="assets/figures/train-build.svg" width="1200" height="840" alt="Training pipeline of Dooop: (a) the looped student initialized from the frozen teacher, (b) training states mixing noisy data states and rollout states, (c) the student forward pass with per-round targets.">
             </div>
-            <div class="spot-zoom" aria-hidden="true"><div class="spot-zoom-inner"><img src="assets/figures/training-pipeline.svg" alt=""></div></div>
           </div>
           <p class="anim-caption" aria-live="polite"></p>
-          <ol class="anim-chips" aria-label="Steps"></ol>
+          <ol class="anim-progress" aria-label="Steps"></ol>
         </figure>
         <figure class="anim" id="anim-infer" data-anim="infer" aria-labelledby="anim-infer-title">
           <h3 class="anim-title" id="anim-infer-title">Inference with loop guidance, step by step</h3>
@@ -203,16 +202,15 @@
             <button type="button" class="btn btn-toggle anim-play" aria-pressed="true">Pause</button>
             <button type="button" class="anim-step-btn anim-prev" aria-label="Previous step">&larr; Prev</button>
             <button type="button" class="anim-step-btn anim-next" aria-label="Next step">Next &rarr;</button>
+            <span class="anim-counter" aria-hidden="true"></span>
           </div>
-          <div class="spot-wrap">
-            <div class="spot-stage">
-              <img class="spot-base" src="assets/figures/loop-guidance.svg" width="1049" height="293" alt="Loop guidance at one sampling step: (a) strong and weak predictions of the student, (b) the loop guidance combination and the sampler step.">
-              <div class="spot-ring" aria-hidden="true"></div>
+          <div class="build-scroll">
+            <div class="build-stage">
+              <img src="assets/figures/infer-build.svg" width="1208" height="404" alt="Loop guidance at one sampling step: (a) strong and weak predictions of the student, (b) the loop guidance combination and the sampler step.">
             </div>
-            <div class="spot-zoom" aria-hidden="true"><div class="spot-zoom-inner"><img src="assets/figures/loop-guidance.svg" alt=""></div></div>
           </div>
           <p class="anim-caption" aria-live="polite"></p>
-          <ol class="anim-chips" aria-label="Steps"></ol>
+          <ol class="anim-progress" aria-label="Steps"></ol>
         </figure>
       </div>
     </section>

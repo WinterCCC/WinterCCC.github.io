@@ -48,9 +48,6 @@
   --fab-bg: #c4e1b4;
   --fab-text: #151515;
   --fab-border: #bdbdbd;
-  --spot-dim: rgba(255, 255, 255, 0.62);
-  --spot-shadow: 0 16px 40px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
-  --zoom-glow: 0 0 0 6px #c4e1b4;
 }
 
 /* Palette "Maroon": the earlier Virginia Tech maroon theme, values unchanged. */
@@ -87,9 +84,6 @@
   --fab-bg: var(--accent);
   --fab-text: var(--accent-text);
   --fab-border: var(--accent);
-  --spot-dim: rgba(250, 248, 245, 0.62);
-  --spot-shadow: 0 18px 48px rgba(31, 29, 27, 0.28), 0 4px 12px rgba(31, 29, 27, 0.12);
-  --zoom-glow: 0 0 0 0 transparent;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,8 +101,6 @@
     --placeholder: #2c2826;
     --figure-bg: #ffffff;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.25);
-    --spot-dim: rgba(22, 20, 20, 0.62);
-    --spot-shadow: 0 18px 48px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -1022,7 +1014,7 @@ table.data b {
   }
 }
 
-/* Method animations: paper figure with a spotlight and a magnified region */
+/* Method animations: the method diagrams built up step by step (assets/js/anim.js) */
 .anim {
   margin: 32px 0 0;
   background: var(--surface);
@@ -1061,66 +1053,32 @@ table.data b {
   color: var(--accent);
 }
 
-.spot-wrap {
-  position: relative;
-  margin-top: 16px;
+.anim-counter {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
 }
 
-.spot-stage {
-  position: relative;
-  overflow: hidden;
+/* The diagram always sits on white; on narrow screens it keeps a legible width and scrolls sideways. */
+.build-scroll {
+  margin-top: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
   background: var(--figure-bg);
   border-radius: 8px;
+  -webkit-overflow-scrolling: touch;
 }
 
-.spot-base {
+.build-stage {
+  min-width: 900px;
+}
+
+.build-stage svg,
+.build-stage img {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.spot-ring {
-  position: absolute;
-  border-radius: 6px;
-  outline: 2px solid var(--accent);
-  box-shadow: 0 0 0 9999px var(--spot-dim);
-  pointer-events: none;
-}
-
-.spot-zoom {
-  position: absolute;
-  z-index: 2;
-  overflow: hidden;
-  background: var(--figure-bg);
-  border-radius: 10px;
-  outline: 2px solid var(--accent);
-  box-shadow: var(--zoom-glow), var(--spot-shadow);
-  pointer-events: none;
-}
-
-.spot-zoom-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.spot-zoom-inner img {
-  position: absolute;
-  max-width: none;
-  height: auto;
-}
-
-.spot-ring,
-.spot-zoom,
-.spot-zoom-inner img {
-  transition: left 0.4s ease, top 0.4s ease, width 0.4s ease, height 0.4s ease;
-}
-
-.anim.no-anim .spot-ring,
-.anim.no-anim .spot-zoom,
-.anim.no-anim .spot-zoom-inner img {
-  transition: none;
 }
 
 .anim-caption {
@@ -1129,68 +1087,47 @@ table.data b {
   font-size: 1.05rem;
 }
 
-.anim-chips {
+.anim-progress {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-family: var(--sans);
+  gap: 4px;
 }
 
-.anim-chips button {
-  font: inherit;
-  font-size: 0.85rem;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--muted);
+.anim-progress li {
+  flex: 1 1 0;
+}
+
+.anim-progress button {
+  display: block;
+  width: 100%;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
   cursor: pointer;
 }
 
-.anim-chips button:hover {
-  color: var(--accent);
+.anim-progress button::before {
+  content: "";
+  display: block;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 3px;
+  background: var(--line);
 }
 
-.anim-chips button[aria-current="step"] {
-  border-color: var(--cur-border);
-  background: var(--cur-bg);
-  color: var(--cur-text);
-  font-weight: 600;
+.anim-progress button.is-done::before {
+  background: var(--bar);
 }
 
-/* Mobile: no overlay; the magnified region is a full-width card below the figure. */
-.anim.is-mobile .spot-zoom {
-  position: relative;
-  left: auto;
-  top: auto;
-  width: auto;
-  margin-top: 12px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  box-shadow: var(--shadow);
+.anim-progress button[aria-current="step"]::before {
+  background: var(--accent);
 }
 
-.anim.is-mobile .spot-zoom-inner {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.spot-hint {
-  margin: 6px 0 0;
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spot-ring,
-  .spot-zoom,
-  .spot-zoom-inner img {
-    transition: none;
-  }
+.anim-progress button:hover::before {
+  background: var(--accent);
 }
 
 @media (max-width: 760px) {

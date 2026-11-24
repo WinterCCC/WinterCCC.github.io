@@ -4,8 +4,22 @@
 
   var SAMPLES = window.DOOOP_SAMPLES || [];
   var ASSET_ROOT = "assets/";
-  var K_VALUES = ["1", "2", "3", "4", "8", "16"];
-  var REEL_FRAMES = ["teacher"].concat(K_VALUES);
+  /* Teacher labels per model. A sample's model follows from its set; its K options are the keys of its images. */
+  var MODELS = {
+    sd3: {
+      name: "SD3-medium",
+      teacherCaption: "Teacher (SD3-medium, 2.03B)",
+      teacherEnd: "Teacher",
+      teacherAlt: "Teacher (SD3-medium)"
+    },
+    zimage: {
+      name: "Z-Image",
+      teacherCaption: "Z-Image teacher",
+      teacherEnd: "Z-Image teacher",
+      teacherAlt: "Z-Image teacher"
+    }
+  };
+  var MODEL_ORDER = ["sd3", "zimage"];
   var REEL_SAMPLE_ID = "main-1";
   var REEL_INTERVAL_MS = 1200;
   var SET_LABELS = {
@@ -13,12 +27,15 @@
     appcat: "GenEval object prompts",
     coco: "COCO captions",
     appa: "More GenEval prompts",
-    appb: "GenEval single-object prompts"
+    appb: "GenEval single-object prompts",
+    zimage: "Z-Image: GenEval prompts"
   };
 
+  /* k and galleryK hold the K last chosen; a model without that K shows the nearest smaller one. */
   var state = {
     promptIndex: 0,
     k: "2",
+    galleryModel: "sd3",
     galleryK: "2",
     opacity: 50
   };
@@ -31,12 +48,66 @@
     return ASSET_ROOT + sample.images[key];
   }
 
+  function modelOf(sample) {
+    return sample.set === "zimage" ? "zimage" : "sd3";
+  }
+
+  function samplesOf(model) {
+    return SAMPLES.filter(function (s) {
+      return modelOf(s) === model;
+    });
+  }
+
+  /* K values of one sample, ascending. */
+  function kValuesOf(sample) {
+    return Object.keys(sample.images).filter(function (key) {
+      return key !== "teacher";
+    }).sort(function (a, b) {
+      return Number(a) - Number(b);
+    });
+  }
+
+  /* K values that every sample of a model has. */
+  function modelKValues(model) {
+    var lists = samplesOf(model).map(kValuesOf);
+    if (!lists.length) {
+      return [];
+    }
+    return lists[0].filter(function (k) {
+      return lists.every(function (list) {
+        return list.indexOf(k) !== -1;
+      });
+    });
+  }
+
+  /* The wanted K if available, else the largest available K below it, else the smallest. */
+  function pickK(kValues, wanted) {
+    if (kValues.indexOf(wanted) !== -1) {
+      return wanted;
+    }
+    var pick = kValues[0];
+    kValues.forEach(function (k) {
+      if (Number(k) <= Number(wanted)) {
+        pick = k;
+      }
+    });
+    return pick;
+  }
+
   function frameName(key) {
     return key === "teacher" ? "Teacher" : "K = " + key;
   }
 
+  function studentName(sample) {
+    return sample.student ? "Dooop (" + sample.student + ")" : "Dooop";
+  }
+
+  function studentLabel(sample, k) {
+    return studentName(sample) + ", K = " + k;
+  }
+
   function altText(sample, key) {
-    var who = key === "teacher" ? "Teacher (SD3-medium)" : "Dooop with K = " + key + " loops";
+    var who = key === "teacher" ? MODELS[modelOf(sample)].teacherAlt : studentName(sample) + " with K = " + key + " loops";
     return who + " sample for the prompt: " + sample.prompt;
   }
 
@@ -79,48 +150,66 @@
     }, true);
   }
 
-  /* Segmented K controls (radiogroup with roving tabindex). */
-  function buildSegmented(group, getValue, setValue) {
-    var hosts = document.querySelectorAll('[data-k-group="' + group + '"]');
-    hosts.forEach(function (host) {
-      K_VALUES.forEach(function (k) {
-        var b = document.createElement("button");
-        b.type = "button";
-        b.setAttribute("role", "radio");
-        b.dataset.k = k;
-        b.textContent = k;
-        b.setAttribute("aria-label", "K = " + k);
-        b.addEventListener("click", function () {
-          setValue(k);
-        });
-        b.addEventListener("keydown", function (e) {
-          var i = K_VALUES.indexOf(getValue());
-          var next = null;
-          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-            next = K_VALUES[(i + 1) % K_VALUES.length];
-          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-            next = K_VALUES[(i - 1 + K_VALUES.length) % K_VALUES.length];
-          } else if (e.key === "Home") {
-            next = K_VALUES[0];
-          } else if (e.key === "End") {
-            next = K_VALUES[K_VALUES.length - 1];
-          }
-          if (next !== null) {
-            e.preventDefault();
-            setValue(next);
-            host.querySelector('[data-k="' + next + '"]').focus();
-          }
-        });
-        host.appendChild(b);
+  /* Segmented controls (radiogroup with roving tabindex). options: [{value, text, label}].
+     The buttons are rebuilt only when the option list changes. */
+  function buildSegmented(host, options, getValue, setValue) {
+    var values = options.map(function (o) {
+      return o.value;
+    });
+    if (host.dataset.built === values.join(",")) {
+      return;
+    }
+    host.dataset.built = values.join(",");
+    host.textContent = "";
+    options.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "radio");
+      b.dataset.value = o.value;
+      b.textContent = o.text;
+      if (o.label) {
+        b.setAttribute("aria-label", o.label);
+      }
+      b.addEventListener("click", function () {
+        setValue(o.value);
       });
+      b.addEventListener("keydown", function (e) {
+        var i = values.indexOf(getValue());
+        var next = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+          next = values[(i + 1) % values.length];
+        } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+          next = values[(i - 1 + values.length) % values.length];
+        } else if (e.key === "Home") {
+          next = values[0];
+        } else if (e.key === "End") {
+          next = values[values.length - 1];
+        }
+        if (next !== null) {
+          e.preventDefault();
+          setValue(next);
+          host.querySelector('[data-value="' + next + '"]').focus();
+        }
+      });
+      host.appendChild(b);
     });
   }
 
-  function syncSegmented(group, value) {
-    document.querySelectorAll('[data-k-group="' + group + '"] button').forEach(function (b) {
-      var on = b.dataset.k === value;
+  function syncSegmented(host, value) {
+    host.querySelectorAll("button").forEach(function (b) {
+      var on = b.dataset.value === value;
       b.setAttribute("aria-checked", on ? "true" : "false");
       b.tabIndex = on ? 0 : -1;
+    });
+  }
+
+  function kHost(group) {
+    return document.querySelector('[data-k-group="' + group + '"]');
+  }
+
+  function kOptions(kValues) {
+    return kValues.map(function (k) {
+      return { value: k, text: k, label: "K = " + k };
     });
   }
 
@@ -143,32 +232,45 @@
     });
   }
 
+  /* K shown in the viewer and the overlay: the chosen K, limited to the selected sample's K values. */
+  function viewerK() {
+    var s = SAMPLES[state.promptIndex];
+    return s ? pickK(kValuesOf(s), state.k) : state.k;
+  }
+
   function renderViewers() {
     var s = SAMPLES[state.promptIndex];
     if (!s) {
       return;
     }
+    var model = MODELS[modelOf(s)];
+    var k = viewerK();
     $("prompt-select").value = String(state.promptIndex);
     $("prompt-select-2").value = String(state.promptIndex);
-    syncSegmented("viewer", state.k);
-    syncSegmented("compare", state.k);
+    ["viewer", "compare"].forEach(function (group) {
+      var host = kHost(group);
+      buildSegmented(host, kOptions(kValuesOf(s)), viewerK, setK);
+      syncSegmented(host, k);
+    });
 
     var t = $("viewer-teacher");
     var st = $("viewer-student");
     t.src = imgPath(s, "teacher");
     t.alt = altText(s, "teacher");
-    st.src = imgPath(s, state.k);
-    st.alt = altText(s, state.k);
-    $("viewer-student-cap").textContent = "Dooop, K = " + state.k;
+    st.src = imgPath(s, k);
+    st.alt = altText(s, k);
+    $("viewer-teacher-cap").textContent = model.teacherCaption;
+    $("viewer-student-cap").textContent = studentLabel(s, k);
     $("viewer-prompt").textContent = s.category + ": “" + s.prompt + "”";
 
     var ot = $("overlay-teacher");
     var os = $("overlay-student");
     ot.src = imgPath(s, "teacher");
     ot.alt = altText(s, "teacher");
-    os.src = imgPath(s, state.k);
-    os.alt = altText(s, state.k) + ", drawn on top of the teacher sample";
-    $("overlay-k-end").textContent = "Dooop, K = " + state.k;
+    os.src = imgPath(s, k);
+    os.alt = altText(s, k) + ", drawn on top of the teacher sample";
+    $("overlay-teacher-end").textContent = model.teacherEnd;
+    $("overlay-k-end").textContent = studentLabel(s, k);
   }
 
   function setPrompt(i) {
@@ -195,19 +297,49 @@
     apply();
   }
 
-  /* Gallery of all prompts at one K. */
+  /* Gallery of all prompts of one model at one K. */
+  function galleryK() {
+    return pickK(modelKValues(state.galleryModel), state.galleryK);
+  }
+
+  function setGalleryK(k) {
+    state.galleryK = k;
+    renderGallery();
+  }
+
+  function setGalleryModel(model) {
+    state.galleryModel = model;
+    renderGallery();
+  }
+
   function renderGallery() {
-    syncSegmented("gallery", state.galleryK);
+    var k = galleryK();
+    syncSegmented($("gallery-model"), state.galleryModel);
+    var host = kHost("gallery");
+    buildSegmented(host, kOptions(modelKValues(state.galleryModel)), galleryK, setGalleryK);
+    syncSegmented(host, k);
     var grid = $("gallery-grid");
-    if (!grid.children.length) {
+    if (grid.dataset.model !== state.galleryModel) {
+      grid.dataset.model = state.galleryModel;
+      grid.textContent = "";
       SAMPLES.forEach(function (s, i) {
+        if (modelOf(s) !== state.galleryModel) {
+          return;
+        }
         var li = document.createElement("li");
         var b = document.createElement("button");
         b.type = "button";
+        b.dataset.index = String(i);
         b.innerHTML = '<span class="media"><img loading="lazy" width="285" height="285"></span>' +
           '<span class="tile-text"><span class="tile-cat"></span><span class="tile-prompt"></span></span>';
         b.querySelector(".tile-cat").textContent = s.category;
         b.querySelector(".tile-prompt").textContent = s.prompt;
+        if (s.student) {
+          var who = document.createElement("span");
+          who.className = "tile-student";
+          who.textContent = studentName(s);
+          b.querySelector(".tile-text").appendChild(who);
+        }
         b.addEventListener("click", function () {
           setPrompt(i);
           $("loops").scrollIntoView();
@@ -217,21 +349,22 @@
         grid.appendChild(li);
       });
     }
-    Array.prototype.forEach.call(grid.querySelectorAll("button"), function (b, i) {
-      var s = SAMPLES[i];
+    grid.querySelectorAll("button").forEach(function (b) {
+      var s = SAMPLES[parseInt(b.dataset.index, 10)];
       var img = b.querySelector("img");
-      img.src = imgPath(s, state.galleryK);
-      img.alt = altText(s, state.galleryK);
-      b.setAttribute("aria-label", "Open in viewer: " + s.category + ", " + s.prompt + ", K = " + state.galleryK);
+      img.src = imgPath(s, k);
+      img.alt = altText(s, k);
+      b.setAttribute("aria-label", "Open in viewer: " + s.category + ", " + s.prompt + ", " + (s.student ? studentLabel(s, k) : "K = " + k));
     });
   }
 
-  /* Hero reel: Teacher, then K = 1 ... 16, looping. */
+  /* Hero reel: the SD3 sample REEL_SAMPLE_ID, Teacher, then K = 1 ... 16, looping. */
   function initReel() {
-    var sample = SAMPLES.filter(function (s) { return s.id === REEL_SAMPLE_ID; })[0] || SAMPLES[0];
+    var sample = SAMPLES.filter(function (s) { return s.id === REEL_SAMPLE_ID; })[0] || samplesOf("sd3")[0];
     if (!sample) {
       return;
     }
+    var frames = ["teacher"].concat(kValuesOf(sample));
     var img = $("reel-img");
     var label = $("reel-label");
     var toggle = $("reel-toggle");
@@ -239,7 +372,7 @@
     var frame = 0;
     var timer = null;
 
-    REEL_FRAMES.forEach(function (key) {
+    frames.forEach(function (key) {
       var pre = new Image();
       pre.src = imgPath(sample, key);
       var li = document.createElement("li");
@@ -250,7 +383,7 @@
 
     function show(i) {
       frame = i;
-      var key = REEL_FRAMES[i];
+      var key = frames[i];
       img.src = imgPath(sample, key);
       img.alt = altText(sample, key);
       label.textContent = frameName(key);
@@ -264,7 +397,7 @@
         return;
       }
       timer = window.setInterval(function () {
-        show((frame + 1) % REEL_FRAMES.length);
+        show((frame + 1) % frames.length);
       }, REEL_INTERVAL_MS);
       toggle.textContent = "Pause";
       toggle.setAttribute("aria-pressed", "true");
@@ -373,12 +506,11 @@
     initImageFallback();
     buildPromptSelect($("prompt-select"));
     buildPromptSelect($("prompt-select-2"));
-    buildSegmented("viewer", function () { return state.k; }, setK);
-    buildSegmented("compare", function () { return state.k; }, setK);
-    buildSegmented("gallery", function () { return state.galleryK; }, function (k) {
-      state.galleryK = k;
-      renderGallery();
-    });
+    buildSegmented($("gallery-model"), MODEL_ORDER.filter(function (m) {
+      return samplesOf(m).length > 0;
+    }).map(function (m) {
+      return { value: m, text: MODELS[m].name };
+    }), function () { return state.galleryModel; }, setGalleryModel);
     renderViewers();
     initOpacity();
     renderGallery();

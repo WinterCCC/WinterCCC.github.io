@@ -554,6 +554,19 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+/* Z-Image teaser collage (.media holds the image fallback) */
+.teaser-collage {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.teaser-collage img {
+  width: 100%;
+}
+
 /* Controls */
 .controls {
   display: flex;
@@ -908,6 +921,12 @@ table.data b {
   color: var(--accent);
   font-weight: 600;
   margin-bottom: 2px;
+}
+
+.gallery .tile-student {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
 }
 
 /* Footer and floating back-to-top */

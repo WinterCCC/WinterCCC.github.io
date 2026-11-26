@@ -145,6 +145,28 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 .selected-pub-links a.code-link {
   background: #333;
 }
+.hover-video {
+  position: relative;
+  display: block;
+}
+.hover-video img {
+  display: block;
+}
+.hover-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.hover-video.is-playing video {
+  opacity: 1;
+}
 @media (max-width: 600px) {
   .selected-pub {
     flex-direction: column;
@@ -158,7 +180,7 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 <div class="selected-pub">
   <div class="selected-pub-image">
-    <a href="https://winterccc.github.io/dooop/"><img src="/images/dooop_teaser.jpg" alt="Dooop: samples of the looped student distilled from Z-Image"></a>
+    <a class="hover-video" href="https://winterccc.github.io/dooop/"><img src="/images/dooop_teaser.jpg" alt="Dooop: samples of the looped student distilled from Z-Image"><video src="/dooop/assets/video/dooop.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></a>
   </div>
   <div class="selected-pub-content">
     <div class="selected-pub-title">Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth</div>
@@ -243,3 +265,23 @@ See full publication list [here](/publications/).
 - **Research on Detection of Coronary Artery Stenosis**
   *Nov. 2022 – Apr. 2024*
 
+<script>
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.hover-video').forEach(function (el) {
+    var video = el.querySelector('video');
+    if (!video) return;
+    el.addEventListener('mouseenter', function () {
+      el.classList.add('is-playing');
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+    el.addEventListener('mouseleave', function () {
+      video.pause();
+      video.currentTime = 0;
+      el.classList.remove('is-playing');
+    });
+  });
+})();
+</script>

@@ -158,6 +158,23 @@ You can find my CV here: [Chenru Wang's Curriculum Vitae](../assets/CV.pdf).
 
 <div class="selected-pub">
   <div class="selected-pub-image">
+    <a href="https://winterccc.github.io/dooop/"><img src="/images/dooop_teaser.jpg" alt="Dooop: samples of the looped student distilled from Z-Image"></a>
+  </div>
+  <div class="selected-pub-content">
+    <div class="selected-pub-title">Distill to Loop: Turning Pretrained Diffusion Transformers into Looped Models with Adjustable Depth</div>
+    <div class="selected-pub-authors"><strong>Chenru Wang</strong>, Shengwei An</div>
+    <div class="selected-pub-venue">Preprint, 2026</div>
+    <div class="selected-pub-links">
+      <a href="https://arxiv.org/abs/2611.31977">Paper</a>
+      <a href="https://winterccc.github.io/dooop/">Project</a>
+      <a href="https://huggingface.co/ShimaRinC/Distill-to-Loop">Model</a>
+      <a href="https://github.com/WinterCCC/Distill-to-Loop" class="code-link">Code</a>
+    </div>
+  </div>
+</div>
+
+<div class="selected-pub">
+  <div class="selected-pub-image">
     <img src="/images/stepx_opd_teaser.png" alt="StepX-OPD">
   </div>
   <div class="selected-pub-content">
